@@ -25,7 +25,7 @@ Database:
 
 ### Usage with `azk`
 
-Example of using that image with [azk](http://azk.io):
+Example of using this image with [azk](http://azk.io):
 
 ```js
 /**
