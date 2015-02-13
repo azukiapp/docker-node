@@ -14,7 +14,7 @@ Image content:
 - Ubuntu 14.04
 - Git
 - VIM
-- NPM
+- npm
 
 Database:
 
@@ -25,7 +25,7 @@ Database:
 
 ### Usage with `azk`
 
-Example of using that image with the [azk](http://azk.io):
+Example of using that image with [azk](http://azk.io):
 
 ```js
 /**
@@ -65,7 +65,6 @@ systems({
   },
 });
 ```
-
 
 ### Usage with `docker`
 
