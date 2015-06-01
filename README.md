@@ -7,17 +7,17 @@ Versions (tags)
 ---
 
 <versions>
-- [`latest`, `0`, `0.10`, `0.10.33`](https://github.com/azukiapp/docker-node/blob/master/0.10/Dockerfile)
-- [`0.12`, `0.12.0`](https://github.com/azukiapp/docker-node/blob/master/0.12/Dockerfile)
+- [`0.10`, `0.10.38`](https://github.com/azukiapp/docker-node/blob/debian/0.10/Dockerfile)
+- [`latest`, `0`, `0.12`, `0.12.4`](https://github.com/azukiapp/docker-node/blob/debian/0.12/Dockerfile)
 </versions>
 
 Image content:
 ---
 
-- Ubuntu 14.04
+- Debian Jessie
 - Git
 - VIM
-- npm
+- NPM
 
 Database:
 
