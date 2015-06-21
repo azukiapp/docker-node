@@ -1,27 +1,19 @@
-# The container includes:
-#
-# azukiapp/ruby:
-# * Node 0.12.0
-# * NPM 2.1.11
-#
-
-FROM azukiapp/web-based
+FROM azukiapp/alpine
 MAINTAINER Azuki <support@azukiapp.com>
 
-# verify gpg and sha256: http://nodejs.org/dist/v0.12.0/SHASUMS256.txt.asc
-# gpg: aka "Timothy J Fontaine (Work) <tj.fontaine@joyent.com>"
-RUN gpg --keyserver pgp.mit.edu --recv-keys 114F43EE0176B71C7BC219DD50A3051F888C628D
+RUN apk add python openssl-dev zlib-dev libuv-dev c-ares-dev paxmark libuv-dev linux-headers
 
-ENV NODE_VERSION 0.12.0
-ENV NPM_VERSION 2.5.1
+# NodeJS or IOJS
+# ENV VERSION=v0.10.9 CMD=node DOMAIN=nodejs.org CFLAGS="-D__USE_MISC"
+# ENV VERSION=v0.11.9 CMD=node DOMAIN=nodejs.org
+ENV VERSION=v0.12.4 CMD=node DOMAIN=nodejs.org
+RUN curl -SL https://${DOMAIN}/dist/${VERSION}/${CMD}-${VERSION}.tar.gz | tar -xz
 
-RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" \
-    && curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
-    && gpg --verify SHASUMS256.txt.asc \
-    && grep " node-v$NODE_VERSION-linux-x64.tar.gz\$" SHASUMS256.txt.asc | sha256sum -c - \
-    && tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 \
-    && rm "node-v$NODE_VERSION-linux-x64.tar.gz" SHASUMS256.txt.asc \
-    && npm install -g npm@"$NPM_VERSION" \
-    && npm cache clear
+RUN  cd ${CMD}-${VERSION} \
+  && ./configure --prefix=/usr
 
-CMD [ "node" ]
+RUN  cd ${CMD}-${VERSION} \
+  && make
+
+RUN  cd ${CMD}-${VERSION} \
+  && make install
