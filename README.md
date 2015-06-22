@@ -8,7 +8,8 @@ Base docker image to run **Node** applications in [`azk`](http://azk.io)
 ###### Versions:
 
 <versions>
-- [`latest`, `0`, `0.10`, `0.10.9`](https://github.com/azukiapp/docker-node/blob/v0.10.9/0/Dockerfile)
+- [`latest`, `0`, `0.11`, `0.11.9`](https://github.com/azukiapp/docker-node/blob/v0.11.9/0/Dockerfile)
+- [`0.10`, `0.10.9`](https://github.com/azukiapp/docker-node/blob/v0.10.9/0/Dockerfile)
 </versions>
 
 ###### Image content:
