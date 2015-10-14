@@ -9,15 +9,14 @@ Base docker image to run **Node** applications in [`azk`](http://azk.io)
 
 <versions>
 - [`latest`, `4.2.1`](https://github.com/azukiapp/docker-node/blob/master/4.2.1/Dockerfile)
-- [`0.11`, `0.11.9`](https://github.com/azukiapp/docker-node/blob/v0.11.9/0.11/Dockerfile)
-- [`0.10`, `0.10.9`](https://github.com/azukiapp/docker-node/blob/v0.10.9/0.10/Dockerfile)
-- [`0.12`, `0.12.4`](https://github.com/azukiapp/docker-node/blob/v0.12.4/0.12/Dockerfile)
+- [`0.10`, `0.10.40`](https://github.com/azukiapp/docker-node/blob/v0.10.9/0.10/Dockerfile)
+- [`0.12`, `0.12.7`](https://github.com/azukiapp/docker-node/blob/v0.12.4/0.12/Dockerfile)
 </versions>
 
 ###### Image content:
 
-  - Node
-  - NPM 2.11.3
+  - node
+  - npm
 
 ### Usage with `azk`
 
