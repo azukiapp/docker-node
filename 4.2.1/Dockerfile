@@ -1,6 +1,6 @@
 # The container includes:
 #
-# * Node 4.2.1
+# * Node 4.0.0
 # * NPM 2.14.2
 #
 

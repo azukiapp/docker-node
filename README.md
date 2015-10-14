@@ -9,6 +9,7 @@ Versions (tags)
 <versions>
 - [`latest`, `0`, `0.10`, `0.10.33`](https://github.com/azukiapp/docker-node/blob/master/0.10/Dockerfile)
 - [`0.12`, `0.12.0`](https://github.com/azukiapp/docker-node/blob/master/0.12/Dockerfile)
+- [`4.2.1`](https://github.com/azukiapp/docker-node/blob/master/4.2.1/Dockerfile)
 </versions>
 
 Image content:
@@ -35,7 +36,7 @@ Example of using this image with [azk](http://azk.io):
 /**
  * Documentation: http://docs.azk.io/Azkfile.js
  */
- 
+
 // Adds the systems that shape your system
 systems({
   "my-app": {
