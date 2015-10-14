@@ -1,29 +1,24 @@
 FROM azukiapp/alpine
 MAINTAINER Azuki <support@azukiapp.com>
 
-# NodeJS or IOJS
-ENV VERSION=v0.10.9 CMD=node DOMAIN=nodejs.org CFLAGS="-D__USE_MISC"
-ENV NPM_VERSION=2.11.3
+ENV VERSION=v0.10.40
+ENV CFLAGS="-D__USE_MISC" CMD=node DOMAIN=nodejs.org
 
-RUN  DEL_PACKS="make gcc g++ python linux-headers paxctl python c-ares-dev paxmark openssl-dev zlib-dev" \
-  && apk add libcrypto1.0 libgcc libstdc++ libuv-dev $DEL_PACKS \
-  && cd /var/tmp \
-  && curl -SL https://${DOMAIN}/dist/${VERSION}/${CMD}-${VERSION}.tar.gz | tar -xz \
-  && CONFIG_FLAGS="--shared-zlib --shared-libuv --shared-openssl" \
-  && cd ${CMD}-${VERSION} \
-  && ./configure --prefix=/usr ${CONFIG_FLAGS} \
-  && make \
-  && make install \
-  && paxctl -cm /usr/bin/${CMD} \
-  && apk del ${DEL_PACKS} \
-  && rm -rf /var/cache/apk/* /var/tmp/* /etc/ssl /usr/include \
-    /usr/share/man /root/.node-gyp \
-  && cd / \
-  if [ -x /usr/bin/npm -a -n "${NPM_VERSION}" ]; then \
-    npm install -g npm@"${NPM_VERSION}" \
-    && npm cache clear \
-  fi \
-  rm -rf /tmp/* /root/.npm /usr/lib/node_modules/npm/man \
-    /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
+RUN apk add --update curl make gcc g++ python linux-headers paxctl libgcc libstdc++ && \
+  curl -sSL https://nodejs.org/dist/${VERSION}/node-${VERSION}.tar.gz | tar -xz     && \
+  cd /node-${VERSION}                                                               && \
+  ./configure --prefix=/usr ${CONFIG_FLAGS}                                         && \
+  make -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1)                       && \
+  make install                                                                      && \
+  paxctl -cm /usr/bin/node                                                          && \
+  cd /                                                                              && \
+  if [ -x /usr/bin/npm ]; then \
+    npm install -g npm                                                              && \
+    find /usr/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf; \
+  fi                                                                                && \
+  apk del curl make gcc g++ python linux-headers paxctl ${DEL_PKGS}                 && \
+  rm -rf /etc/ssl /node-${VERSION} ${RM_DIRS} \
+    /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp \
+    /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
 
 CMD [ "node" ]

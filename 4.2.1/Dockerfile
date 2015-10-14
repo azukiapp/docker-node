@@ -1,7 +1,7 @@
 FROM azukiapp/alpine
 MAINTAINER Azuki <support@azukiapp.com>
 
-ENV VERSION=v0.12.7
+ENV VERSION=v4.1.2
 ENV CONFIG_FLAGS="--fully-static" DEL_PKGS="libgcc libstdc++" RM_DIRS=/usr/include CMD=node DOMAIN=nodejs.org
 
 RUN apk add --update curl make gcc g++ python linux-headers paxctl libgcc libstdc++ && \
