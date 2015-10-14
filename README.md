@@ -8,9 +8,9 @@ Base docker image to run **Node** applications in [`azk`](http://azk.io)
 ###### Versions:
 
 <versions>
-- [`latest`, `4.2.1`](https://github.com/azukiapp/docker-node/blob/master/4.2.1/Dockerfile)
-- [`0.10`, `0.10.40`](https://github.com/azukiapp/docker-node/blob/v0.10.9/0.10/Dockerfile)
-- [`0.12`, `0.12.7`](https://github.com/azukiapp/docker-node/blob/v0.12.4/0.12/Dockerfile)
+- [`latest`, `4`, `4.2`, `4.2.1`](https://github.com/azukiapp/docker-node/blob/master/4.2.1/Dockerfile)
+- [`0.12`, `0.12.7`](https://github.com/azukiapp/docker-node/blob/0.12/Dockerfile)
+- [`0.10`, `0.10.40`](https://github.com/azukiapp/docker-node/blob/0.10/Dockerfile)
 </versions>
 
 ###### Image content:
@@ -23,43 +23,35 @@ Base docker image to run **Node** applications in [`azk`](http://azk.io)
 Example of using this image with [azk][azk]:
 
 ```js
-/**
- * Documentation: http://docs.azk.io/Azkfile.js
- */
-
-// Adds the systems that shape your system
+// docs: http://docs.azk.io/en/reference/azkfilejs/
 systems({
-  "my-app": {
-    // Dependent systems
+  'node-app': {
     depends: [],
-    // More images:  http://images.azk.io
-    image: {"docker": "azukiapp/node:0.10"},
-    // Steps to execute before running instances
+    image: {'docker': 'azukiapp/node'},
     provision: [
-      "npm install",
+      'npm install',
     ],
-    workdir: "/azk/#{manifest.dir}/#{system.name}",
-    shell: "/bin/bash",
-    command: "npm start",
-    wait: {"retry": 20, "timeout": 1000},
+    workdir: '/azk/#{manifest.dir}',
+    shell: '/bin/bash',
+    command: 'npm start',
+    wait: 20,
     mounts: {
-      '/azk/#{manifest.dir}/#{system.name}': sync("./#{system.name}"),
-      '/azk/#{manifest.dir}/#{system.name}/node_modules': persistent("#{system.name}/node_modules"),
+      '/azk/#{manifest.dir}': sync('.'),
+      '/azk/#{manifest.dir}/node_modules': persistent('./node_modules'),
     },
-    scalable: {"default": 1},
+    scalable: {'default': 1},
     http: {
-      domains: [ "#{system.name}.#{azk.default_domain}" ]
+      domains: [ '#{system.name}.#{azk.default_domain}' ]
     },
     ports: {
-      // exports global variables
-      http: "3000/tcp",
+      http: '3000/tcp',
     },
     envs: {
       // Make sure that the PORT value is the same as the one
       // in ports/http below, and that it's also the same
       // if you're setting it in a .env file
-      NODE_ENV: "dev",
-      PORT: "3000",
+      NODE_ENV: 'dev',
+      PORT: '3000',
     },
   },
 });
