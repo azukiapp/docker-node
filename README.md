@@ -2,6 +2,8 @@
 ==================
 
 [![Circle CI](https://circleci.com/gh/azukiapp/docker-node/tree/master.svg?style=svg)](https://circleci.com/gh/azukiapp/docker-node/tree/master)
+[![Docker Pulls](https://img.shields.io/docker/pulls/azukiapp/node.svg)](azk-image)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](gitter)
 
 Base docker image to run **Node** applications in [`azk`](http://azk.io)
 
