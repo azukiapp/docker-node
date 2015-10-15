@@ -1,6 +1,8 @@
 [azukiapp/node](http://images.azk.io/#/node)
 ==================
 
+[![Circle CI](https://circleci.com/gh/azukiapp/docker-node/tree/master.svg?style=svg)](https://circleci.com/gh/azukiapp/docker-node/tree/master)
+
 Base docker image to run **Node** applications in [`azk`](http://azk.io)
 
 Versions (tags)
@@ -35,7 +37,7 @@ Example of using this image with [azk](http://azk.io):
 /**
  * Documentation: http://docs.azk.io/Azkfile.js
  */
- 
+
 // Adds the systems that shape your system
 systems({
   "my-app": {
