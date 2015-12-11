@@ -5,6 +5,10 @@ machine:
 test:
   override:
 
+    - docker build --no-cache -t azukiapp/node:5 5
+    - docker run -it azukiapp/node:5 node --version
+    - docker run -it -v `pwd`:/tmp azukiapp/node:5 bash /tmp/run-app-test.sh
+
     - docker build --no-cache -t azukiapp/node:4 4
     - docker run -it azukiapp/node:4 node --version
     - docker run -it -v `pwd`:/tmp azukiapp/node:4 bash /tmp/run-app-test.sh
