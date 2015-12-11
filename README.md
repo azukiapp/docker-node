@@ -11,6 +11,7 @@ Versions (tags)
 ---
 
 <versions>
+- [`5`, `5.2`, `5.2.0`](https://github.com/azukiapp/docker-node/blob/master/5/Dockerfile)
 - [`4`, `4.2`, `4.2.1`](https://github.com/azukiapp/docker-node/blob/master/4/Dockerfile)
 - [`0.12`, `0.12.7`](https://github.com/azukiapp/docker-node/blob/master/0.12/Dockerfile)
 - [`latest`, `0`, `0.10`, `0.10.40`](https://github.com/azukiapp/docker-node/blob/master/0.10/Dockerfile)
