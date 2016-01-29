@@ -21,3 +21,6 @@ test:
     - docker run -it azukiapp/node:0.10 node --version
     - docker run -it -v `pwd`:/tmp azukiapp/node:0.10 bash /tmp/run-app-test.sh
 
+    - docker build --no-cache -t azukiapp/node:0.11.14 0.11.14
+    - docker run -it azukiapp/node:0.11.14 node --version
+    - docker run -it -v `pwd`:/tmp azukiapp/node:0.11.14 bash /tmp/run-app-test.sh
