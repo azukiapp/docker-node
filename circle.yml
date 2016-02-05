@@ -1,26 +1,32 @@
+general:
+  artifacts:
+    - "images"
+  branches:
+    ignore:
+      - /rootfs-.*/
+
 machine:
   services:
     - docker
+  environment:
+    DEPS_PATH: ~/deps
+
+dependencies:
+  cache_directories:
+    - "~/deps"
+  override:
+    - docker info
+    - docker images
 
 test:
   override:
+    - make -e build
+    - make -e test
 
-    - docker build --no-cache -t azukiapp/node:5 5
-    - docker run -it azukiapp/node:5 node --version
-    - docker run -it -v `pwd`:/tmp azukiapp/node:5 bash /tmp/run-app-test.sh
-
-    - docker build --no-cache -t azukiapp/node:4 4
-    - docker run -it azukiapp/node:4 node --version
-    - docker run -it -v `pwd`:/tmp azukiapp/node:4 bash /tmp/run-app-test.sh
-
-    - docker build --no-cache -t azukiapp/node:0.12 0.12
-    - docker run -it azukiapp/node:0.12 node --version
-    - docker run -it -v `pwd`:/tmp azukiapp/node:0.12 bash /tmp/run-app-test.sh
-
-    - docker build --no-cache -t azukiapp/node:0.10 0.10
-    - docker run -it azukiapp/node:0.10 node --version
-    - docker run -it -v `pwd`:/tmp azukiapp/node:0.10 bash /tmp/run-app-test.sh
-
-    - docker build --no-cache -t azukiapp/node:0.11.14 0.11.14
-    - docker run -it azukiapp/node:0.11.14 node --version
-    - docker run -it -v `pwd`:/tmp azukiapp/node:0.11.14 bash /tmp/run-app-test.sh
+deployment:
+  hub:
+    branch: master
+    commands:
+      - |
+        # Trigger all tags/branchs for this automated build.
+        curl -H "Content-Type: application/json" --data '{"build": true}' -X POST ${DOCKER_HUB_HOOK}
