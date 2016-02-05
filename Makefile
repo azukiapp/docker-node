@@ -1,5 +1,5 @@
 ROOT_PATH := $(shell pwd)
-IMAGE_NAME := "azukiapp/erlang"
+IMAGE_NAME := "azukiapp/node"
 
 # bins
 DOCKER := $(shell which adocker || which docker)
