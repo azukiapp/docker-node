@@ -1,6 +1,6 @@
 # The container includes:
 #
-# azukiapp/ruby:
+# azukiapp/node:
 # * Node 0.12.0
 # * NPM 2.1.11
 #
